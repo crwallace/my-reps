@@ -189,7 +189,17 @@ layout: default
                 <% } %>
             </td>
             <td>
-                <%= info.person.name %> <%= formatParty(info.person.party) %>
+                <%= info.person.name %> <%= formatParty(info.person.party) %> <br />
+
+                <% if (info.emails){ %>
+                    <% $.each(info.emails, function(i, email){ %>
+                        <% if ((i + 1) < info.emails.length){ %>
+                            <i class='fa fa-fw fa-envelope'></i> <a href='mailto:<%= email %>'><%= email %></a><br />
+                        <% } else { %>
+                            <i class='fa fa-fw fa-envelope'></i> <a href='mailto:<%= email %>'><%= email %></a>
+                        <% } %>
+                    <% }) %>
+                <% } %>
                 <span class='visible-xs-block visible-sm-block'><%= info.office.name %></span>
             </td>
             <td class='hidden-xs hidden-sm'><%= info.office.name %></td>
@@ -208,6 +218,16 @@ layout: default
                         </p>
                     <% }) %>
                 <% } %>
+                <% if (info.phones){ %>
+                <% $.each(info.phones, function(i, phone){ %>
+                    <% if ((i + 1) < info.phones.length){ %>
+                        <i class='fa fa-fw fa-phone'></i> <%= phone %><br />
+                    <% } else { %>
+                        <i class='fa fa-fw fa-phone'></i> <%= phone %>
+                    <% } %>
+                <% }) %>
+                <br />
+            <% } %>
             </td>
             <td>
                 <% if (info.channels || info.urls){ %>
@@ -240,7 +260,7 @@ layout: default
             <% if (info.phones || info.emails){ %>
                 <td class='nowrap'>
                     <button type="button" class="btn btn-default btn-contact" data-toggle="modal" data-id="<%= info.pseudo_id %>">
-                        Contact <i class='fa fa-chevron-right'></i>
+                        Voting Record <i class='fa fa-chevron-right'></i>
                     </button>
                 </td>
             <% } else { %>
@@ -269,9 +289,9 @@ layout: default
 
             <!-- Add your contact instructions here! -->
 
-            <p><strong>Contact <%= info.person.name %></strong></p>
+            <p><strong><%= info.person.name %> Voting Record</strong></p>
             <hr />
-            <% if (info.phones){ %>
+            <!--<% if (info.phones){ %>
                 <% $.each(info.phones, function(i, phone){ %>
                     <% if ((i + 1) < info.phones.length){ %>
                         <i class='fa fa-fw fa-phone'></i> <%= phone %><br />
@@ -290,7 +310,7 @@ layout: default
                         <i class='fa fa-fw fa-envelope'></i> <a href='mailto:<%= email %>'><%= email %></a>
                     <% } %>
                 <% }) %>
-            <% } %>
+            <% } %>-->
         </div>
     </div>
 </script>
